@@ -1,14 +1,23 @@
 import React, {useState, useEffect} from 'react';
-import {View, Text, TouchableOpacity, ScrollView, Image} from 'react-native';
+import {
+  View,
+  Text,
+  TouchableOpacity,
+  ScrollView,
+  Image,
+  ActivityIndicator,
+} from 'react-native';
 import {useDispatch, useSelector} from 'react-redux';
 import ListCard from '../../components/ListCard';
 import axios from 'axios';
 import Toast from 'react-native-toast-message';
 import TopBar from '../../components/TopBar';
+import LottieView from 'lottie-react-native';
 
 function MainPage(props) {
   const dispatch = useDispatch();
-  const [isLoading, setLoading] = useState(true);
+  const [isLoading, setLoading] = useState(false);
+  const [isFirstLoading, setFirstLoading] = useState(true);
   const [productData, setData] = useState([]);
   const [currentPage, setCurrentPage] = useState(1);
   const addToCart = (oneProductQty, oneProductName) => {
@@ -44,7 +53,7 @@ function MainPage(props) {
     );
   };
   const infiniteScroll = () => {
-    console.log('Load More');
+    setLoading(true);
     setCurrentPage(currentPage + 1);
     axios
       .get(
@@ -63,7 +72,7 @@ function MainPage(props) {
         )
         .then(response => {
           setData(productData.concat(response.data.value.products));
-          setLoading(false);
+          setFirstLoading(false);
         });
     }
   }, []);
@@ -71,6 +80,13 @@ function MainPage(props) {
     <>
       <Toast style={{zIndex: 1}} ref={ref => Toast.setRef(ref)} />
       <TopBar lefSide={'WineDaily'} />
+      {isFirstLoading ? (
+        <LottieView
+          source={require('../../assets/loading.json')}
+          autoPlay
+          loop
+        />
+      ) : null}
       <ScrollView
         onScroll={({nativeEvent}) => {
           if (isCloseToBottom(nativeEvent)) {
@@ -108,6 +124,12 @@ function MainPage(props) {
                 }
               />
             ))}
+          {isLoading ? (
+            <View style={{paddingBottom: 40, alignItems: 'center'}}>
+              <Text style={{color: '#8A0014', fontSize: 20}}>Loading More</Text>
+              <ActivityIndicator size="large" color="#8A0014" />
+            </View>
+          ) : null}
         </View>
       </ScrollView>
     </>
