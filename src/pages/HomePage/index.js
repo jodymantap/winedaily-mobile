@@ -131,6 +131,7 @@ function MainPage(props) {
                   onPressDetail={() =>
                     props.navigation.navigate('detail', {id: e.id})
                   }
+                  isDisabled={`${e.qty < 1 ? 0.5 : 1}`}
                 />
               ))}
             {isLoading ? (

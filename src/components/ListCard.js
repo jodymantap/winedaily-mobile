@@ -13,7 +13,9 @@ export default function ListCard({
   onPressAdd,
   onPressBookmark,
   onPressDetail,
+  isDisabled,
 }) {
+  // console.log(typeof(isDisabled))
   return (
     <TouchableOpacity
       style={{
@@ -94,6 +96,7 @@ export default function ListCard({
             padding: 8,
             alignItems: 'center',
             borderRadius: 12,
+            opacity: parseFloat(isDisabled),
           }}>
           <Text style={{fontSize: 19, color: '#FEA300', fontWeight: 'bold'}}>
             ADD TO CART

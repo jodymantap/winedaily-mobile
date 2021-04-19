@@ -58,25 +58,31 @@ const MainNavigator = () => {
           let text;
           let icon;
           let iconSize;
+          let iconStyle;
           if (route.name === 'homeStack') {
             text = 'HOME';
             icon = 'home';
             iconSize = 24;
+            iconStyle = {alignSelf: "center", justifyContent: 'center'} 
           } else if (route.name === 'page1') {
             text = 'CART';
             icon = 'shopping-cart';
             iconSize = 24;
+            iconStyle = {alignSelf: "center", justifyContent: 'center'} 
           } else if (route.name === 'page2') {
             icon = 'camera';
-            iconSize = 30;
+            iconSize = 28;
+            iconStyle = {alignSelf: "center", justifyContent: 'center', backgroundColor : "#ffffff", borderRadius: 50, paddingVertical: 4, paddingHorizontal: 4, color: "#8A0014"} 
           } else if (route.name === 'page3') {
             text = 'PROFILE';
             icon = 'user';
             iconSize = 24;
+            iconStyle = {alignSelf: "center", justifyContent: 'center'} 
           } else if (route.name === 'page4') {
             text = 'SEARCH';
             icon = 'search';
             iconSize = 24;
+            iconStyle = {alignSelf: "center", justifyContent: 'center'} 
           }
           return (
             <View style={{marginVertical: 10}}>
@@ -84,7 +90,7 @@ const MainNavigator = () => {
                 name={icon}
                 size={iconSize}
                 color={color}
-                style={{alignSelf: 'center'}}
+                style={iconStyle}
               />
               <Text style={styles.textTab}>{text}</Text>
             </View>

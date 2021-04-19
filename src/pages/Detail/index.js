@@ -130,6 +130,7 @@ function Dashboard(route) {
                   addToCart(productDetail.qty, productDetail.name)
                 }
                 onPressBookmark={() => handleBookmark(productDetail.name)}
+                isDisabled={`${productDetail.qty < 1 ? 0.5 : 1}`}
               />
             </View>
           </View>

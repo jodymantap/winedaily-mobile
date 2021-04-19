@@ -14,6 +14,7 @@ export default function DetailCard({
   productNotes,
   onPressAdd,
   onPressBookmark,
+  isDisabled,
 }) {
   return (
     <TouchableOpacity
@@ -24,7 +25,7 @@ export default function DetailCard({
         width: 300,
         borderRadius: 15,
         marginTop: 15,
-        marginBottom: 20
+        marginBottom: 20,
       }}
       activeOpacity={1}>
       <View style={{flexDirection: 'row', justifyContent: 'center'}}>
@@ -72,6 +73,7 @@ export default function DetailCard({
             padding: 8,
             alignItems: 'center',
             borderRadius: 12,
+            opacity: parseFloat(isDisabled),
           }}>
           <Text style={{fontSize: 19, color: '#FEA300', fontWeight: 'bold'}}>
             ADD TO CART
