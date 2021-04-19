@@ -1,9 +1,14 @@
 import React, {useState, useEffect} from 'react';
-import {View, Text, ScrollView, ActivityIndicator} from 'react-native';
+import {
+  View,
+  Text,
+  ScrollView,
+  ActivityIndicator,
+  ToastAndroid,
+} from 'react-native';
 import {useDispatch} from 'react-redux';
 import ListCard from '../../components/ListCard';
 import axios from 'axios';
-import Toast from 'react-native-toast-message';
 import TopBar from '../../components/TopBar';
 
 function MainPage(props) {
@@ -16,28 +21,26 @@ function MainPage(props) {
   const addToCart = (oneProductQty, oneProductName) => {
     if (oneProductQty >= 1) {
       dispatch({type: 'addtocart'});
-      Toast.show({
-        type: 'success',
-        text1: 'Yeay!',
-        text2: `${oneProductName} added to the cart 👋`,
-        ref: 'ref',
-      });
+      ToastAndroid.showWithGravity(
+        `${oneProductName} added to the cart 👋`,
+        ToastAndroid.SHORT,
+        ToastAndroid.CENTER,
+      );
     } else {
-      Toast.show({
-        type: 'error',
-        text1: 'Sorry',
-        text2: `${oneProductName} is out of stock!`,
-        ref: 'ref',
-      });
+      ToastAndroid.showWithGravity(
+        `Sorry, ${oneProductName} is out of stock!`,
+        ToastAndroid.SHORT,
+        ToastAndroid.CENTER,
+      );
     }
   };
 
   const handleBookmark = oneProductName => {
-    Toast.show({
-      type: 'success',
-      text1: 'Yeay!',
-      text2: `${oneProductName} bookmarked 👋`,
-    });
+    ToastAndroid.showWithGravity(
+      `${oneProductName} bookmarked 👋`,
+      ToastAndroid.SHORT,
+      ToastAndroid.CENTER,
+    );
   };
 
   const isCloseToBottom = ({layoutMeasurement, contentOffset, contentSize}) => {
@@ -76,7 +79,6 @@ function MainPage(props) {
   }, []);
   return (
     <>
-      <Toast style={{zIndex: 1}} ref={ref => Toast.setRef(ref)} />
       <TopBar lefSide={'WineDaily'} />
       {isFirstLoading ? (
         <View

@@ -30,7 +30,7 @@ function Dashboard(route) {
       );
     } else {
       ToastAndroid.showWithGravity(
-        `${oneProductName} is out of stock!`,
+        `Sorry, ${oneProductName} is out of stock!`,
         ToastAndroid.SHORT,
         ToastAndroid.CENTER,
       );
