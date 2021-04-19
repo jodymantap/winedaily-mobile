@@ -41,18 +41,18 @@ function MainPage(props) {
   };
 
   const isCloseToBottom = ({layoutMeasurement, contentOffset, contentSize}) => {
-    const paddingToBottom = 150;
+    const paddingToBottom = 20;
     return (
       layoutMeasurement.height + contentOffset.y >=
       contentSize.height - paddingToBottom
     );
   };
 
-  const infiniteScroll = async () => {
+  const infiniteScroll = () => {
     console.log('Load More');
     setLoading(true);
     setCurrentPage(currentPage + 1);
-    await axios
+    axios
       .get(
         `https://zax5j10412.execute-api.ap-southeast-1.amazonaws.com/dev/api/product/list?page=${currentPage}`,
       )
