@@ -23,7 +23,8 @@ export default function DetailCard({
         padding: 30,
         width: 300,
         borderRadius: 15,
-        marginTop: 30,
+        marginTop: 15,
+        marginBottom: 20
       }}
       activeOpacity={1}>
       <View style={{flexDirection: 'row', justifyContent: 'center'}}>

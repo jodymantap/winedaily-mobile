@@ -57,26 +57,32 @@ const MainNavigator = () => {
         tabBarIcon: ({focused, color, size}) => {
           let text;
           let icon;
+          let iconSize;
           if (route.name === 'homeStack') {
             text = 'HOME';
             icon = 'home';
+            iconSize = 24;
           } else if (route.name === 'page1') {
             text = 'CART';
             icon = 'shopping-cart';
+            iconSize = 24;
           } else if (route.name === 'page2') {
             icon = 'camera';
+            iconSize = 30;
           } else if (route.name === 'page3') {
             text = 'PROFILE';
             icon = 'user';
+            iconSize = 24;
           } else if (route.name === 'page4') {
             text = 'SEARCH';
             icon = 'search';
+            iconSize = 24;
           }
           return (
             <View style={{marginVertical: 10}}>
               <Icon
                 name={icon}
-                size={24}
+                size={iconSize}
                 color={color}
                 style={{alignSelf: 'center'}}
               />
